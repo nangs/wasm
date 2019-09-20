@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Shiny.BluetoothLE" Version="1.0.0.400-beta" />
+    <PackageReference Include="Shiny.Core" Version="1.0.0.400-beta" />
+    <PackageReference Include="Shiny.Locations" Version="1.0.0.400-beta" />
+    <PackageReference Include="Shiny.Notifications" Version="1.0.0.400-beta" />
+    <PackageReference Include="Shiny.Sensors" Version="1.0.0.400-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Sensors\" />
+    <Folder Include="Notifications\" />
+  </ItemGroup>
+
+</Project>
