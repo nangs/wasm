@@ -13,10 +13,12 @@ namespace Shiny.Wasm
     {
         public static void Init(IServiceCollection services)
         {
+            // TODO: figure out startup and bindable services
             services.AddSingleton(x => (IJSInProcessRuntime)x.Resolve<IJSRuntime>());
             services.AddSingleton<ISerializer, BlazorSerializer>();
             services.AddSingleton<IEnvironment, EnvironmentImpl>();
             services.AddSingleton<ISettings, SettingsImpl>();
+            services.AddSingleton<AppStateManagerImpl>();
             services.AddSingleton<IJobManager, JobManager>();
         }
     }

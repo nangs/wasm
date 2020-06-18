@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+
+using Microsoft.JSInterop;
+
 using Shiny.Locations;
 
 
@@ -8,6 +11,10 @@ namespace Shiny.Wasm.Locations
     //https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
     public class GpsManagerImpl : IGpsManager
     {
+        readonly IJSInProcessRuntime interop;
+        public GpsManagerImpl(IJSInProcessRuntime interop) => this.interop = interop;
+
+
         public bool IsListening => throw new NotImplementedException();
 
         public AccessState GetCurrentStatus(GpsRequest request)
