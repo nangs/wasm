@@ -13,8 +13,4 @@
         <PackageReference Include="Shiny.Sensors" Version="1.2.0.1686" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Sensors\" />
-    </ItemGroup>
-
 </Project>

@@ -7,10 +7,10 @@ using Shiny.Notifications;
 namespace Shiny.Wasm.Notifications
 {
     //https://developer.mozilla.org/en-US/docs/Web/API/Notification
-    public class WasmNotificationsImpl : INotificationManager
+    public class NotificationManagerImpl : INotificationManager
     {
-        readonly IJSRuntime interop;
-        public WasmNotificationsImpl(IJSRuntime interop) => this.interop = interop;
+        readonly IJSInProcessRuntime interop;
+        public NotificationManagerImpl(IJSInProcessRuntime interop) => this.interop = interop;
 
 
         public int Badge { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -37,6 +37,7 @@ namespace Shiny.Wasm.Notifications
 
         public Task<AccessState> RequestAccess()
         {
+            
             throw new System.NotImplementedException();
         }
 
