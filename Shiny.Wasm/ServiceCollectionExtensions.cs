@@ -1,19 +1,23 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Shiny.Locations;
+using Shiny.Wasm.Locations;
 
 
 namespace Shiny.Wasm
 {
     public static class ServiceCollectionExtensions
     {
-        public static void UseWasm(this IServiceProvider services)
+        public static void UseGps(this IServiceCollection services)
         {
-
+            services.TryAddSingleton<IGpsManager, GpsManagerImpl>();
         }
 
-        //public static IServiceCollection AddBleCentral(this IServiceCollection services)
-        //    => services.AddSingleton<ICentralManager, CentralManager>();
 
-        //public static IServiceCollection AddSettings(this IServiceCollection services)
-        //    => services.AddSingleton<ISettings, SettingsImpl>();
+        public static void UseGeofencing<TDelegate>(this IServiceCollection services)
+        {
+            services.UseGps();
+            services.AddSingleton<IGeofenceManager, GpsGeofenceManagerImpl>();
+        }
     }
 }

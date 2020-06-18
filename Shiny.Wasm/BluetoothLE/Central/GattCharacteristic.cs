@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Acr.BluetoothLE.Central
+namespace Shiny.BluetoothLE.Central
 {
     public class GattCharacteristic : IGattCharacteristic
     {
@@ -42,6 +42,16 @@ namespace Acr.BluetoothLE.Central
         }
 
         public IObservable<CharacteristicGattResult> Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IObservable<CharacteristicGattResult> Notify(bool sendHookEvent = false, bool useIndicationIfAvailable = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IObservable<CharacteristicGattResult> Write(byte[] value, bool withResponse = true)
         {
             throw new NotImplementedException();
         }

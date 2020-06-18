@@ -1,37 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using Acr.Infrastructure;
 using Microsoft.JSInterop;
+using Shiny.Infrastructure;
 
 
-namespace Acr.Settings
+namespace Shiny.Settings
 {
     public class SettingsImpl : AbstractSettings
     {
-        public SettingsImpl() : base(new BlazorJsonSerializer()) {}
+        readonly IJSInProcessRuntime interop;
+        public SettingsImpl(IJSInProcessRuntime interop, ISerializer serializer) : base(serializer)
+            => this.interop = interop;
+
+
         public override bool Contains(string key)
-            => JSRuntime.Current.InvokeAsync<bool>("AcrSettings.contains").Result;
+            => this.interop.Invoke<string>("localStorage.getItem", key) != null;
 
 
         protected override object NativeGet(Type type, string key)
-            => JSRuntime.Current.InvokeAsync<object>("AcrSettings.get", key);
+        { 
+            var value = this.interop.InvokeAsync<string>("localStorage.getItem", key);
+            if (value == null)
+                return null;
+
+            return null;
+        }
 
 
         protected override void NativeSet(Type type, string key, object value)
-            => JSRuntime.Current.InvokeAsync<object>("AcrSettings.set", key, value);
+            => this.interop.InvokeVoid("localStorage.setItem", key, value.ToString());
 
 
         protected override void NativeRemove(string[] keys)
         {
             foreach (var key in keys)
-                JSRuntime.Current.InvokeAsync<bool>("Acr.Settings.Remove", key);
+                this.interop.InvokeAsync<bool>("localStorage.removeItem", key);
         }
 
 
-        protected override IDictionary<string, string> NativeValues()
-        {
-            var items = JSRuntime.Current.InvokeAsync<Dictionary<string, string>>("AcrSettings.list").Result;
-            return items;
-        }
+        protected override void NativeClear() => this.interop.InvokeVoid("localStorage.clear");
+
+
+        //protected override IDictionary<string, string> NativeValues()
+        //{
+        //    var items = this.interop.InvokeAsync<Dictionary<string, string>>("AcrSettings.list").Result;
+        //    return items;
+        //}
     }
 }

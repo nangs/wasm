@@ -1,0 +1,55 @@
+<Project>
+    <PropertyGroup>
+        <Authors>Allan Ritchie</Authors>
+        <Owners>aritchie;shinylib</Owners>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <DisableExtraReferences>False</DisableExtraReferences>
+        <NoWarn>$(NoWarn);1591;1701;1591;1702;1705;VSX1000;NU1603</NoWarn>
+        <Description>Shiny</Description>
+        <Product>Shiny WebAssembly</Product>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://shinylib.net</PackageProjectUrl>
+        <!--<PackageIcon>nuget.png</PackageIcon>-->
+        <PackageIconUrl>https://raw.githubusercontent.com/shinyorg/shiny/master/art/nuget.png</PackageIconUrl>
+        <PackageReleaseNotes>https://github.com/shinyorg/shiny/blob/master/ChangeLog.md</PackageReleaseNotes>
+        <PackageTags>xamarin uwp ios android tizen tvos watchos ble geofences gps location background jobs settings environment speech sensors acr</PackageTags>
+        <RepositoryUrl>https://github.com/shinyorg/shiny</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <ShinyVersion Condition=" '$(ShinyVersion)' == '' ">1.2.0</ShinyVersion>
+        <VersionPrefix>$(ShinyVersion)</VersionPrefix>
+        <VersionPrefix Condition=" $(BUILD_BUILDNUMBER) != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
+
+        <!-- disable sourcelink on mono, to workaround https://github.com/dotnet/sourcelink/issues/155 -->
+        <EnableSourceLink Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND '$(MSBuildRuntimeType)' == 'Core' ">true</EnableSourceLink>
+        <EnableSourceControlManagerQueries>$(EnableSourceLink)</EnableSourceControlManagerQueries>
+        <IncludeSymbols>True</IncludeSymbols>
+        <IncludeSource>True</IncludeSource>
+        <PublishRepositoryUrl>True</PublishRepositoryUrl>
+        <EmbedUntrackedSources>True</EmbedUntrackedSources>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DebugType>portable</DebugType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" '$(SourceLinkEnabled)' == 'true' ">
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <!--
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)art\nuget.png" Pack="true" PackagePath="\icon.png" />
+    </ItemGroup>
+    -->
+
+</Project>

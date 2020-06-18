@@ -1,11 +1,10 @@
 ﻿using System;
 
 
-namespace Acr.BluetoothLE.Central
+namespace Shiny.BluetoothLE.Central
 {
     public class Peripheral : AbstractPeripheral
     {
-        public override object NativeDevice { get; }
         public override ConnectionState Status { get; }
         public override void Connect(ConnectionConfig config)
         {

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reactive.Subjects;
 using Microsoft.JSInterop;
+using Shiny.BluetoothLE.Central;
 
-
-namespace Acr.BluetoothLE.Central
+namespace Shiny.BluetoothLE
 {
     public static class Callbacks
     {
-        public static Subject<IScanResult> ScanResults { get; } = new Subject<IScanResult>();
+        public static Subject<ScanResult> ScanResults { get; } = new Subject<ScanResult>();
 
 
         [JSInvokable]

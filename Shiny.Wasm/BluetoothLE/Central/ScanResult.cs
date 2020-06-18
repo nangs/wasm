@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Acr.BluetoothLE.Central
+namespace Shiny.BluetoothLE.Central
 {
     public class ScanResult : IScanResult
     {
