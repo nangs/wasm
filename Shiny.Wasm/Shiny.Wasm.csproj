@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="3.2.0" />
         <PackageReference Include="Shiny.BluetoothLE" Version="1.2.0.1686-beta" />

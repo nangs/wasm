@@ -1,8 +1,31 @@
 ﻿@inherits LayoutComponentBase
+@using Blazorise.Sidebar
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+<Sidebar>
+    <SidebarContent>
+        <SidebarBrand>
+            <a href="">Shiny</a>
+        </SidebarBrand>
+        <SidebarNavigation>
+            <SidebarLabel>Main</SidebarLabel>
+            <SidebarItem>
+                <SidebarLink To="" Title="Home">Home</SidebarLink>
+            </SidebarItem>
+            <SidebarItem>
+                <SidebarLink To="gps" Title="GPS">GPS</SidebarLink>
+            </SidebarItem>
+            <SidebarItem>
+                <SidebarLink To="notifications" Title="Notifications">Notifications</SidebarLink>
+            </SidebarItem>
+            <SidebarItem>
+                <SidebarLink To="sensors" Title="Sensors">Sensors</SidebarLink>
+            </SidebarItem>
+            <SidebarItem>
+                <SidebarLink To="settings" Title="Settings">Settings</SidebarLink>
+            </SidebarItem>
+        </SidebarNavigation>
+    </SidebarContent>
+</Sidebar>
 
 <div class="main">
     <div class="top-row px-4">

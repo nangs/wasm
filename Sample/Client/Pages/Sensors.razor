@@ -1,0 +1,31 @@
+﻿@page "/sensors"
+@inject Shiny.Sensors.IAccelerometer accelerometer
+@inject Shiny.Sensors.IGyroscope gyroscope
+@inject Shiny.Sensors.IMagnetometer magnetometer
+@inject Shiny.Sensors.IAmbientLight ambientLight
+@inject Shiny.Sensors.ICompass compass
+
+<h3>Sensors</h3>
+
+<Card>
+    <CardTitle Size="5">Accelerometer</CardTitle>
+    <CardText>@AccelerometerValues</CardText>
+    <Button Clicked="@ToggleAccelerometer">@AccelerometerText</Button>
+</Card>
+
+@code {
+
+    string AccelerometerText;
+    string AccelerometerValues;
+
+    void ToggleAccelerometer()
+    {
+
+        this.accelerometer
+            .WhenReadingTaken()
+            .Subscribe(
+                x =>this.AccelerometerValues = $"X: {x.X} - Y: {x.Y} - Z: {x.Z}",
+                ex => this.AccelerometerValues = ex.ToString()
+            );
+    }
+}
