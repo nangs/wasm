@@ -7,7 +7,7 @@ namespace Shiny.Wasm
 {
     public static class Permissions
     {
-        public static bool IsFeatureAvailable(this IJSInProcessRuntime interop, string windowType) => interop.Invoke<bool>("window." + windowType);
+        public static bool IsFeatureAvailable(this IJSInProcessRuntime interop, string windowType) => interop.Invoke<bool>("Shiny.isFeatureAvailable", windowType);
 
 
         public static async Task<AccessState> RequestPermission(this IJSInProcessRuntime interop, string permission, string windowType)
@@ -15,7 +15,7 @@ namespace Shiny.Wasm
             if (!interop.IsFeatureAvailable(windowType))
                 return AccessState.NotSupported;
 
-            var result = await interop.InvokeAsync<string>("navigator.permissions.query({ name: '" + permission + "' });");
+            var result = await interop.Promise<string>("Shiny.requestPermission", permission);
             if (result == null)
                 return AccessState.Unknown;
 

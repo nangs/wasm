@@ -15,17 +15,26 @@
 
 @code {
 
-    string AccelerometerText;
-    string AccelerometerValues;
+    IDisposable? sub;
+    string AccelerometerText = "Start";
+    string AccelerometerValues = "";
 
     void ToggleAccelerometer()
     {
-
-        this.accelerometer
-            .WhenReadingTaken()
-            .Subscribe(
-                x =>this.AccelerometerValues = $"X: {x.X} - Y: {x.Y} - Z: {x.Z}",
-                ex => this.AccelerometerValues = ex.ToString()
-            );
+        if (this.sub == null)
+        {
+            this.sub = this.accelerometer
+                .WhenReadingTaken()
+                .Subscribe(
+                    x =>this.AccelerometerValues = $"X: {x.X} - Y: {x.Y} - Z: {x.Z}",
+                    ex => this.AccelerometerValues = ex.ToString()
+                );
+        }
+        else
+        {
+            this.sub.Dispose();
+            this.sub = null;
+        }
+        this.AccelerometerText = this.sub == null ? "Start" : "Stop";
     }
 }
