@@ -6,11 +6,12 @@
     
     <ItemGroup>
         <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="3.2.0" />
-        <PackageReference Include="Shiny.BluetoothLE" Version="1.2.0.1686-beta" />
-        <PackageReference Include="Shiny.Core" Version="1.2.0.1686" />
-        <PackageReference Include="Shiny.Locations" Version="1.2.0.1686" />
-        <PackageReference Include="Shiny.Notifications" Version="1.2.0.1686" />
-        <PackageReference Include="Shiny.Sensors" Version="1.2.0.1686" />
+        <PackageReference Include="Shiny.Sensors.Abstractions" Version="1.2.0.1775" />
+        <PackageReference Include="Shiny.Push.Abstractions" Version="1.2.0.1775" />
+        <PackageReference Include="Shiny.Notifications.Abstractions" Version="1.2.0.1775" />
+        <PackageReference Include="Shiny.Locations.Abstractions" Version="1.2.0.1775" />
+        <PackageReference Include="Shiny.Core.Abstractions" Version="1.2.0.1775" />
+        <PackageReference Include="Shiny.BluetoothLE.Abstractions" Version="1.2.0.1775" />
     </ItemGroup>
 
 </Project>
